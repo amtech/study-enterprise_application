@@ -1,1 +1,54 @@
+import tkinter as tk
+from tkinter import *
+from tkinter import ttk
+from PIL import ImageTk, Image
+import os
+
+splash = tk.Tk()
+splash.title("Add Title here ")
+
+image = Image.open("images/logo.png")
+resize_image = image.resize((200, 200))
+img = ImageTk.PhotoImage(resize_image)
+height= 300
+width = 600
+x = (splash.winfo_screenwidth()//2)-(width//2)
+y = (splash.winfo_screenheight()//2)-(height//2)
+splash.geometry('{}x{}+{}+{}'.format(width, height, x, y))
+splash.overrideredirect(False)
+splash.config(background='black')
+splash.resizable(False, False)
+
+
+frame = Frame(splash, width=600, height=400)
+frame.pack()
+frame.place(anchor='center', x='300', y='100')
+label = Label(frame, image = img, bg='black')
+label.pack()
+
+Label_middle = tk.Label(splash,text='OLEWIN BI ',bg='black', fg='white', font=('Poppins (bold) ', 25 ))
+
+Label_middle.place(relx=0.5,rely=0.7,anchor='center')
+progressbar = ttk.Progressbar(mode="indeterminate")
+progressbar.place(relx=0.4, rely=0.9)
+progressbar.start()
+
+label_1 = tk.Label(splash, text="Loading......", fg='white', bg='black',font=('Times (bold)', 20 ))
+label_1.place( relx=0.4, rely=0.8)
+
+splash.after(5000,lambda:newWindow())
+
+def newWindow():
+
+    splash.destroy()
+    first_window = tk.Tk()
+    first_window.title('Main window')
+    first_window.config(background='white')
+    first_window.geometry("1100x600")
+    label1= Label(text="Welcome to Main Window Intelligence",  font=('Times',45),bg='white', fg='black')
+    label1.pack()
+    label1.place(x=200, y=50)
+
+
+splash.mainloop()
 
